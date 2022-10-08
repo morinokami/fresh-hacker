@@ -2,6 +2,23 @@ import { type Item, type ItemRaw } from "@/utils/types.ts";
 
 const API_BASE = "https://hacker-news.firebaseio.com/v0";
 
+export async function getItems(): Promise<Item[]> {
+  const resp = await fetch(
+    `${API_BASE}/topstories.json`,
+  );
+  if (!resp.ok) {
+    // TODO: handle error
+  }
+  const itemIds = Object.values(await resp.json()).slice(0, 30) as number[];
+  return await Promise.all(
+    itemIds.map((id) => fetchItem(id)),
+  );
+}
+
+export async function getItem(id: number): Promise<Item> {
+  const item = await fetchItem(id, true);
+  return item;
+}
 async function fetchItem(
   id: number,
   withComments = false,
@@ -30,17 +47,4 @@ async function fetchItem(
       )
       : [],
   };
-}
-
-export async function getItems(): Promise<Item[]> {
-  const resp = await fetch(
-    `${API_BASE}/topstories.json`,
-  );
-  if (!resp.ok) {
-    // TODO: handle error
-  }
-  const itemIds = Object.values(await resp.json()).slice(0, 30) as number[];
-  return await Promise.all(
-    itemIds.map((id) => fetchItem(id)),
-  );
 }

@@ -1,14 +1,14 @@
 import { type Item } from "@/utils/types.ts";
 
-type ListItemProps = {
+type ItemSummaryProps = {
   item: Item;
 };
 
-export function ListItem(props: ListItemProps) {
+export function ItemSummary(props: ItemSummaryProps) {
   const { item } = props;
   return (
-    <li class="my-1">
-      <div>
+    <div>
+      <div class="my-1">
         <span class="cursor-pointer mr-1 text-sm text-gray-300">▲</span>
         <span class="mr-1 text-sm">
           <a href={getUrl(item)}>{item.title}</a>
@@ -22,9 +22,11 @@ export function ListItem(props: ListItemProps) {
           {item.comments_count} comments
         </a>
       </div>
-    </li>
+    </div>
   );
 }
+
+// TODO: Move them to a separate file
 
 function getUrl(item: Item) {
   return item.url && isAbsolute(item.url) ? item.url : `/item?id=${item.id}`;

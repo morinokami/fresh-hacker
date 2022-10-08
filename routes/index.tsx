@@ -1,7 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { Footer } from "@/components/Footer.tsx";
-import { ListItem } from "@/components/ListItem.tsx";
+import { ItemSummary } from "@/components/ItemSummary.tsx";
 import { type Item } from "@/utils/types.ts";
 import { getItems } from "@/utils/data.ts";
 
@@ -29,11 +29,10 @@ export default function Home(props: PageProps<Item[]>) {
         {/* TODO: <meta property="og:image" content={ogImageUrl} /> */}
       </Head>
       <div class="bg-white pt-1 px-3">
-        <ul class="pb-3">
-          {items.map((item) => <ListItem item={item} />)}
-        </ul>
-        <Footer />
+        {items.map((item) => <ItemSummary item={item} />)}
+        <div class="h-3" />
       </div>
+      <Footer />
     </>
   );
 }
