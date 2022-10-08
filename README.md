@@ -2,9 +2,7 @@
 
 Hacker News clone made with [Fresh](https://fresh.deno.dev/).
 
-<p align="center">
-  <img width="846" src="https://user-images.githubusercontent.com/7889778/194703897-735492ce-e860-4de8-9c31-b5d3217c8c9c.png">
-</p>
+![hn2x](https://user-images.githubusercontent.com/7889778/194712641-e55379df-38cc-40df-8f1a-dee1c2931003.jpg)
 
 ### Demo
 
