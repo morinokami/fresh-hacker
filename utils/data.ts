@@ -1,17 +1,46 @@
-import { type Item } from "@/utils/types.ts";
-import { fetchItem } from "@/routes/api/hn/item.ts";
+import { type Item, type ItemRaw } from "@/utils/types.ts";
 
-const API_URL = Deno.env.get("API_URL") || "http://localhost:8000/api";
+const API_BASE = "https://hacker-news.firebaseio.com/v0";
+
+async function fetchItem(
+  id: number,
+  withComments = false,
+): Promise<Item> {
+  const resp = await fetch(
+    `${API_BASE}/item/${id}.json`,
+  );
+  if (!resp.ok) {
+    // TODO: handle error
+  }
+  const item = await resp.json() as ItemRaw;
+  item.kids = item.kids || [];
+  return {
+    id: item.id,
+    user: item.by,
+    points: item.score,
+    time: item.time,
+    content: item.text,
+    url: item.url,
+    type: item.type,
+    title: item.title,
+    comments_count: Object.values(item.kids).length,
+    comments: withComments
+      ? await Promise.all(
+        Object.values(item.kids).map((id) => fetchItem(id, withComments)),
+      )
+      : [],
+  };
+}
 
 export async function getItems(): Promise<Item[]> {
-  // TODO: not working on Deno Deploy
-  // const resp = await fetch(`${API_URL}/hn/items`);
-
   const resp = await fetch(
-    "https://hacker-news.firebaseio.com/v0/topstories.json",
+    `${API_BASE}/topstories.json`,
   );
-  const items = Object.values(await resp.json()).slice(0, 30) as number[];
+  if (!resp.ok) {
+      // TODO: handle error
+    }
+  const itemIds = Object.values(await resp.json()).slice(0, 30) as number[];
   return await Promise.all(
-    items.map((id) => fetchItem(id)),
+    itemIds.map((id) => fetchItem(id)),
   );
 }
