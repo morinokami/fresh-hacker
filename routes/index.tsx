@@ -4,14 +4,15 @@ import { Header } from "@/components/Header.tsx";
 import { Footer } from "@/components/Footer.tsx";
 import { ListItem } from "@/components/ListItem.tsx";
 import { type Item } from "@/utils/types.ts";
+import { getItems } from "@/utils/data.ts";
 
 const TITLE = "Fresh - Hacker News";
 const DESCRIPTION = "Hacker News clone made with Fresh";
 
 export const handler: Handlers<Item[]> = {
   async GET(_req, ctx) {
-    const items = await fetch("/api/hn/items");
-    return ctx.render(await items.json() as Item[]);
+    const items = await getItems();
+    return ctx.render(items);
   },
 };
 

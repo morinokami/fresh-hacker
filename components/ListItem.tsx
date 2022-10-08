@@ -10,13 +10,17 @@ export function ListItem(props: ListItemProps) {
     <li class="my-1">
       <div>
         <span class="cursor-pointer mr-1 text-sm text-gray-300">▲</span>
-        <span class="mr-1 text-sm"><a href={getUrl(item)}>{item.title}</a></span>
+        <span class="mr-1 text-sm">
+          <a href={getUrl(item)}>{item.title}</a>
+        </span>
         <span class="text-xs text-gray-500">({host(item.url ?? "")})</span>
       </div>
       <div class="text-xs text-gray-500">
         {item.points} point{item.points > 1 ? "s" : ""} by {item.user}{" "}
         {timeAgo(item.time)} ago |{" "}
-        <a class="hover:underline" href={`/item?id=${item.id}`}>{item.comments_count} comments</a>
+        <a class="hover:underline" href={`/item?id=${item.id}`}>
+          {item.comments_count} comments
+        </a>
       </div>
     </li>
   );
@@ -26,8 +30,8 @@ function getUrl(item: Item) {
   return item.url && isAbsolute(item.url) ? item.url : `/item?id=${item.id}`;
 }
 
-function isAbsolute (url: string) {
-  return /^https?:\/\//.test(url)
+function isAbsolute(url: string) {
+  return /^https?:\/\//.test(url);
 }
 
 function host(url: string) {
