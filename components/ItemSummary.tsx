@@ -15,13 +15,16 @@ export function ItemSummary(props: ItemSummaryProps) {
         <span class="mr-1 text-sm">
           <a href={getUrl(item)}>{item.title}</a>
         </span>
-        <span class="text-xs text-gray-500">({host(item.url ?? "")})</span>
+        <span class="text-xs text-gray-500">
+          {item.url ? `(${host(item.url)})` : ""}
+        </span>
       </div>
       <div class="text-xs text-gray-500">
         {item.points} point{item.points > 1 ? "s" : ""} by {item.user}{" "}
         {timeAgo(item.time)} ago |{" "}
         <a class="hover:underline" href={`/item?id=${item.id}`}>
-          {item.comments_count} comments
+          {item.comments_count}{" "}
+          comment{item.comments_count && item.comments_count === 1 ? "" : "s"}
         </a>
       </div>
     </div>
