@@ -37,8 +37,8 @@ export async function getItems(): Promise<Item[]> {
     `${API_BASE}/topstories.json`,
   );
   if (!resp.ok) {
-      // TODO: handle error
-    }
+    // TODO: handle error
+  }
   const itemIds = Object.values(await resp.json()).slice(0, 30) as number[];
   return await Promise.all(
     itemIds.map((id) => fetchItem(id)),
