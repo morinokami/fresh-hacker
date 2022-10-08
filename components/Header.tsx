@@ -1,7 +1,7 @@
 export function Header() {
   return (
     <header class="bg-green-200">
-      <nav class="h-14 p-[2px] md:h-6 flex gap-1 items-center">
+      <nav class="h-14 p-[2px] md:h-8 flex gap-1 items-center">
         <a href="/">
           <img
             src="/logo.svg"

@@ -1,5 +1,5 @@
 import { Handlers } from "$fresh/server.ts";
-import { Item, ItemRaw } from "@/utils/types.ts";
+import { type Item, type ItemRaw } from "@/utils/types.ts";
 
 export async function fetchItem(
   id: number,

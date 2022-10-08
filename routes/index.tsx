@@ -2,14 +2,15 @@ import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { Header } from "@/components/Header.tsx";
 import { Footer } from "@/components/Footer.tsx";
-import { Item } from "@/utils/types.ts";
+import { ListItem } from "@/components/ListItem.tsx";
+import { type Item } from "@/utils/types.ts";
 
 const TITLE = "Fresh - Hacker News";
 const DESCRIPTION = "Hacker News clone made with Fresh";
 
 export const handler: Handlers<Item[]> = {
-  async GET(req, ctx) {
-    const items = await fetch(`${req.url}api/hn/items`);
+  async GET(_req, ctx) {
+    const items = await fetch("/api/hn/items");
     return ctx.render(await items.json() as Item[]);
   },
 };
@@ -29,13 +30,9 @@ export default function Home(props: PageProps<Item[]>) {
       </Head>
       <div class="mx-auto md:p-2 md:w-[85%]">
         <Header />
-        <div>
-          <ul>
-            {items.map((item) => (
-              <li key={item.id}>
-                {JSON.stringify(item)}
-              </li>
-            ))}
+        <div class="bg-white pt-1 px-3">
+          <ul class="pb-3">
+            {items.map((item) => <ListItem item={item} />)}
           </ul>
           <Footer />
         </div>
