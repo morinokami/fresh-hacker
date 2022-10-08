@@ -15,6 +15,7 @@ export const handler: Handlers<Item[]> = {
 
 export default function Home(props: PageProps<Item[]>) {
   const { data: items } = props;
+
   return (
     <>
       <Head>

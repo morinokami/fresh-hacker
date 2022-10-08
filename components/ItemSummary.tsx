@@ -7,6 +7,7 @@ type ItemSummaryProps = {
 
 export function ItemSummary(props: ItemSummaryProps) {
   const { item } = props;
+
   return (
     <div>
       <div class="my-1">

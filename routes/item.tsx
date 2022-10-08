@@ -2,7 +2,7 @@ import { Head } from "$fresh/runtime.ts";
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { Footer } from "@/components/Footer.tsx";
 import { ItemSummary } from "@/components/ItemSummary.tsx";
-import { Comments } from "@/components/Comments.tsx";
+import Comments from "@/islands/Comments.tsx";
 import { type Item } from "@/utils/types.ts";
 import { getItem } from "../utils/data.ts";
 import { DESCRIPTION, SITE_TITLE } from "@/utils/constants.ts";
@@ -21,6 +21,7 @@ export const handler: Handlers<Item> = {
 
 export default function ItemPage(props: PageProps<Item>) {
   const { data: item } = props;
+
   return (
     <>
       <Head>
