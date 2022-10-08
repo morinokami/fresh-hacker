@@ -1,4 +1,5 @@
 import { type Item } from "@/utils/types.ts";
+import { getUrl, host, timeAgo } from "@/utils/data.ts";
 
 type ItemSummaryProps = {
   item: Item;
@@ -24,36 +25,4 @@ export function ItemSummary(props: ItemSummaryProps) {
       </div>
     </div>
   );
-}
-
-// TODO: Move them to a separate file
-
-function getUrl(item: Item) {
-  return item.url && isAbsolute(item.url) ? item.url : `/item?id=${item.id}`;
-}
-
-function isAbsolute(url: string) {
-  return /^https?:\/\//.test(url);
-}
-
-function host(url: string) {
-  const host = url.replace(/^https?:\/\//, "").replace(/\/.*$/, "").replace(
-    "?id=",
-    "/",
-  );
-  const parts = host.split(".").slice(-3);
-  if (parts[0] === "www") parts.shift();
-  return parts.join(".");
-}
-
-function timeAgo(time: number | Date) {
-  const between = Date.now() / 1000 - Number(time);
-  if (between < 3600) return pluralize(~~(between / 60), " minute");
-  else if (between < 86400) return pluralize(~~(between / 3600), " hour");
-  else return pluralize(~~(between / 86400), " day");
-}
-
-function pluralize(time: number, label: string) {
-  if (time === 1) return time + label;
-  return `${time + label}s`;
 }

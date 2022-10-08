@@ -4,8 +4,7 @@ import { Footer } from "@/components/Footer.tsx";
 import { ItemSummary } from "@/components/ItemSummary.tsx";
 import { type Item } from "@/utils/types.ts";
 import { getItems } from "@/utils/data.ts";
-import { SITE_TITLE, DESCRIPTION} from '@/utils/constants.ts'
-
+import { DESCRIPTION, SITE_TITLE } from "@/utils/constants.ts";
 
 export const handler: Handlers<Item[]> = {
   async GET(_req, ctx) {
@@ -27,9 +26,8 @@ export default function Home(props: PageProps<Item[]>) {
         <meta property="og:url" content={props.url.href} />
         {/* TODO: <meta property="og:image" content={ogImageUrl} /> */}
       </Head>
-      <div class="bg-white pt-1 px-3">
+      <div class="bg-white pt-1 pb-3 px-3">
         {items.map((item) => <ItemSummary item={item} />)}
-        <div class="h-3" />
       </div>
       <Footer />
     </>
