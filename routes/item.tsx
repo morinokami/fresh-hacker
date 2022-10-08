@@ -5,9 +5,7 @@ import { ItemSummary } from "@/components/ItemSummary.tsx";
 import { Comments } from "@/components/Comments.tsx";
 import { type Item } from "@/utils/types.ts";
 import { getItem } from "../utils/data.ts";
-
-const TITLE = "Fresh - Hacker News";
-const DESCRIPTION = "Hacker News clone made with Fresh";
+import { SITE_TITLE, DESCRIPTION} from '@/utils/constants.ts'
 
 export const handler: Handlers<Item> = {
   async GET(req, ctx) {
@@ -26,9 +24,9 @@ export default function ItemPage(props: PageProps<Item>) {
   return (
     <>
       <Head>
-        <title>{TITLE} | {item.title}</title>
+        <title>{SITE_TITLE} | {item.title}</title>
         <meta name="description" content={DESCRIPTION} />
-        <meta property="og:title" content={`${TITLE} | ${item.title}`} />
+        <meta property="og:title" content={`${SITE_TITLE} | ${item.title}`} />
         <meta property="og:description" content={DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={props.url.href} />
