@@ -2,7 +2,7 @@ import IconGithub from "./IconGithub.tsx";
 
 export function Footer() {
   return (
-    <footer class="border-t-2 border-green-200">
+    <footer class="border-t-2 border-green-200 bg-white">
       <div class="flex justify-center gap-4 py-2">
         <a href="https://fresh.deno.dev">
           <img
