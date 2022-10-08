@@ -7,7 +7,8 @@ export async function getItems(): Promise<Item[]> {
     `${API_BASE}/topstories.json`,
   );
   if (!resp.ok) {
-    // TODO: handle error
+    const body = await resp.text();
+    throw new Error(`${resp.status} ${body}`);
   }
   const itemIds = Object.values(await resp.json()).slice(0, 30) as number[];
   return await Promise.all(
@@ -27,7 +28,8 @@ async function fetchItem(
     `${API_BASE}/item/${id}.json`,
   );
   if (!resp.ok) {
-    // TODO: handle error
+    const body = await resp.text();
+    throw new Error(`${resp.status} ${body}`);
   }
   const item = await resp.json() as ItemRaw;
   item.kids = item.kids || [];
