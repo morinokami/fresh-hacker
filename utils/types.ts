@@ -27,12 +27,10 @@ export type UserRaw = {
   id: string;
   created: string;
   karma: number;
-  about?: string;
 };
 
 export type User = {
   id: string;
   created_at: string;
   karma: number;
-  about?: string;
 };

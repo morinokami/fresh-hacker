@@ -70,7 +70,6 @@ async function fetchUser(id: string): Promise<User> {
     id: user.id,
     created_at: user.created,
     karma: user.karma,
-    about: user.about,
   };
 }
 
