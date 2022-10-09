@@ -1,4 +1,4 @@
-import { type Item, type ItemRaw } from "@/utils/types.ts";
+import { type Item, type ItemRaw, User, UserRaw } from "@/utils/types.ts";
 
 const API_BASE = "https://hacker-news.firebaseio.com/v0";
 
@@ -20,6 +20,12 @@ export async function getItem(id: number): Promise<Item> {
   const item = await fetchItem(id, true);
   return item;
 }
+
+export async function getUser(id: string): Promise<User> {
+  const user = await fetchUser(id);
+  return user;
+}
+
 async function fetchItem(
   id: number,
   withComments = false,
@@ -31,6 +37,7 @@ async function fetchItem(
     const body = await resp.text();
     throw new Error(`${resp.status} ${body}`);
   }
+
   const item = await resp.json() as ItemRaw;
   item.kids = item.kids || [];
   return {
@@ -48,6 +55,22 @@ async function fetchItem(
         Object.values(item.kids).map((id) => fetchItem(id, withComments)),
       )
       : [],
+  };
+}
+
+async function fetchUser(id: string): Promise<User> {
+  const resp = await fetch(`${API_BASE}/user/${id}.json`);
+  if (!resp.ok) {
+    const body = await resp.text();
+    throw new Error(`${resp.status} ${body}`);
+  }
+
+  const user = await resp.json() as UserRaw;
+  return {
+    id: user.id,
+    created_at: user.created,
+    karma: user.karma,
+    about: user.about,
   };
 }
 

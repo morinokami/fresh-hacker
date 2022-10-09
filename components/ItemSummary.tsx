@@ -20,7 +20,10 @@ export function ItemSummary(props: ItemSummaryProps) {
         </span>
       </div>
       <div class="text-xs text-gray-500">
-        {item.points} point{item.points > 1 ? "s" : ""} by {item.user}{" "}
+        {item.points} point{item.points > 1 ? "s" : ""} by{" "}
+        <a class="hover:underline" href={`/user?id=${item.user}`}>
+          {item.user}
+        </a>{" "}
         {timeAgo(item.time)} ago |{" "}
         <a class="hover:underline" href={`/item?id=${item.id}`}>
           {item.comments_count}{" "}

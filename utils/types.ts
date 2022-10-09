@@ -22,3 +22,17 @@ export type Item = {
   comments_count?: number;
   comments?: Item[];
 };
+
+export type UserRaw = {
+  id: string;
+  created: string;
+  karma: number;
+  about?: string;
+};
+
+export type User = {
+  id: string;
+  created_at: string;
+  karma: number;
+  about?: string;
+};
