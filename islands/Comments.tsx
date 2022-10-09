@@ -32,7 +32,10 @@ function Comment(props: CommentProps) {
     <>
       <div class="text-xs text-gray-500 pt-2 pb-1">
         <span class="cursor-pointer mr-1 text-sm text-gray-300">▲</span>
-        {comment.user} {timeAgo(comment.time)} ago{" "}
+        <a class="hover:underline" href={`/user?id=${comment.user}`}>
+          {comment.user}
+        </a>{" "}
+        {timeAgo(comment.time)} ago{" "}
         <button onClick={() => setOpen(!open)}>{open ? "[-]" : `[+]`}</button>
       </div>
       {open
