@@ -15,6 +15,7 @@ export function Footer() {
         <a
           class="flex items-center"
           href="https://github.com/morinokami/fresh-hacker"
+          aria-label="Repository"
         >
           <IconGithub />
         </a>
