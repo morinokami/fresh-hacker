@@ -31,7 +31,7 @@ export default function ItemPage(props: PageProps<Item>) {
         <meta property="og:description" content={DESCRIPTION} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={props.url.href} />
-        {/* TODO: <meta property="og:image" content={ogImageUrl} /> */}
+        <meta property="og:image" content="/ogp.png" />
       </Head>
       <div class="bg-white pt-1 pb-3 px-3">
         <div class="divide-y space-y-3">
