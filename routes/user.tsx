@@ -3,6 +3,7 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { type User } from "@/utils/types.ts";
 import { getUser } from "@/utils/data.ts";
 import { DESCRIPTION, SITE_TITLE } from "@/utils/constants.ts";
+import { PageHead } from "@/components/PageHead.tsx";
 
 export const handler: Handlers<User> = {
   async GET(req, ctx) {
@@ -21,19 +22,11 @@ export default function UserPage(props: PageProps<User>) {
 
   return (
     <>
-      <Head>
-        <title>{SITE_TITLE} | {user.id}</title>
-        <meta name="description" content={DESCRIPTION} />
-        <meta property="og:title" content={`${SITE_TITLE} | ${user.id}`} />
-        <meta property="og:description" content={DESCRIPTION} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={props.url.href} />
-        <meta property="og:image" content="/ogp.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:creator" content="@onDemocracy" />
-        <meta name="twitter:title" content={`${SITE_TITLE} | ${user.id}`} />
-        <meta name="twitter:description" content={DESCRIPTION} />
-      </Head>
+      <PageHead
+        title={`${SITE_TITLE} | ${user.id}`}
+        description={DESCRIPTION}
+        url={props.url.href}
+      />
       <div class="bg-white pt-1 pb-3 px-3">
         <ul class="my-1 text-sm">
           <li>

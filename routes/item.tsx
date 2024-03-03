@@ -6,6 +6,7 @@ import Comments from "@/islands/Comments.tsx";
 import { type Item } from "@/utils/types.ts";
 import { getItem } from "@/utils/data.ts";
 import { DESCRIPTION, SITE_TITLE } from "@/utils/constants.ts";
+import { PageHead } from "@/components/PageHead.tsx";
 
 export const handler: Handlers<Item> = {
   async GET(req, ctx) {
@@ -24,19 +25,11 @@ export default function ItemPage(props: PageProps<Item>) {
 
   return (
     <>
-      <Head>
-        <title>{SITE_TITLE} | {item.title}</title>
-        <meta name="description" content={DESCRIPTION} />
-        <meta property="og:title" content={`${SITE_TITLE} | ${item.title}`} />
-        <meta property="og:description" content={DESCRIPTION} />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={props.url.href} />
-        <meta property="og:image" content="/ogp.png" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:creator" content="@onDemocracy" />
-        <meta name="twitter:title" content={`${SITE_TITLE} | ${item.title}`} />
-        <meta name="twitter:description" content={DESCRIPTION} />
-      </Head>
+      <PageHead
+        title={`${SITE_TITLE} | ${item.title}`}
+        description={DESCRIPTION}
+        url={props.url.href}
+      />
       <div class="bg-white pt-1 pb-3 px-3">
         <div class="divide-y space-y-3">
           <ItemSummary item={item} />
