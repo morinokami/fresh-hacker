@@ -34,7 +34,7 @@ export default function ItemPage(props: PageProps<Item>) {
         {/* TODO: <meta property="og:image" content={ogImageUrl} /> */}
       </Head>
       <div class="bg-white pt-1 pb-3 px-3">
-        <div class="divide-y-1 space-y-3">
+        <div class="divide-y space-y-3">
           <ItemSummary item={item} />
           <Comments comments={item.comments} />
         </div>

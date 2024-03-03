@@ -1,17 +1,18 @@
-import { AppProps } from "$fresh/server.ts";
-import { Head } from "$fresh/runtime.ts";
+import { PageProps } from "$fresh/server.ts";
 import { Header } from "@/components/Header.tsx";
 
-export default function App({ Component }: AppProps) {
+export default function App({ Component }: PageProps) {
   return (
-    <>
-      <Head>
-        <link rel="stylesheet" href="/app.css" />
-      </Head>
-      <div class="mx-auto md:p-2 md:w-[85%]">
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/styles.css" />
+      </head>
+      <body class="mx-auto md:p-2 md:w-[85%] bg-[#f9f9f9]">
         <Header />
         <Component />
-      </div>
-    </>
+      </body>
+    </html>
   );
 }
