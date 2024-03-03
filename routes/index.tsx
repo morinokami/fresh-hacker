@@ -30,7 +30,6 @@ export default function Home(props: PageProps<Item[]>) {
         <meta name="twitter:creator" content="@onDemocracy" />
         <meta name="twitter:title" content={SITE_TITLE} />
         <meta name="twitter:description" content={DESCRIPTION} />
-        <meta name="twitter:image" content="/ogp.png" />
       </Head>
       <div class="bg-white pt-1 pb-3 px-3">
         {items.map((item) => <ItemSummary item={item} />)}
