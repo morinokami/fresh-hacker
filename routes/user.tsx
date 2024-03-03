@@ -29,6 +29,11 @@ export default function UserPage(props: PageProps<User>) {
         <meta property="og:type" content="website" />
         <meta property="og:url" content={props.url.href} />
         <meta property="og:image" content="/ogp.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content="@onDemocracy" />
+        <meta name="twitter:title" content={`${SITE_TITLE} | ${user.id}`} />
+        <meta name="twitter:description" content={DESCRIPTION} />
+        <meta name="twitter:image" content="/ogp.png" />
       </Head>
       <div class="bg-white pt-1 pb-3 px-3">
         <ul class="my-1 text-sm">
